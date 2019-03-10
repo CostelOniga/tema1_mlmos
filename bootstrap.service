@@ -1,8 +1,11 @@
-[unit]
-description= bootstrap service
-[service]
+[Unit]
+Description= bootstrap service
+
+[Service]
 Type=oneshot
-ExecStart= git clone https://github.com/CostelOniga/tema1_mlmos.git Cloning into '/'
-ExecStart= echo "a clonat
-[install]
+ExecStart=/bin/yum install git
+ExecStart=/bin/git clone https://github.com/CostelOniga/tema1_mlmos.git /root/newdir2
+ExecStart=/bin/bash /root/newdir2/bootstrap.sh
+
+[Install]
 WantedBy=multi-user.target
