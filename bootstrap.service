@@ -1,0 +1,8 @@
+[unit]
+description= bootstrap service
+[service]
+Type=oneshot
+ExecStart= git clone https://github.com/CostelOniga/tema1_mlmos.git Cloning into '/'
+ExecStart= echo "a clonat
+[install]
+WantedBy=multi-user.target
