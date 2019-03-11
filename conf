@@ -1,0 +1,10 @@
+hostname:user
+
+memory:15G
+cpu:1
+
+networkconncetion:enp0s3
+network:enp0s3,enp0s8
+
+updates:true
+install:nano,vim

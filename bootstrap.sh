@@ -33,6 +33,14 @@ else
    echo Memoria masinii nu este configurata corect
 fi
 
+machine_cpu=($(awk -F ":" '{if("processor"==$1) print $2}' /proc/cpuinfo))
+conf_cpu=($(awk -F ":" '{if("cpu"==$1) print $2}' $config_file))
+if [[ $machine_cpu==$conf_cpu ]]
+then
+   echo Procesorul este configurat corect
+else
+   echo Procesorul nu este confugurat corect
+fi
 
 
 update=($(awk -F ":" '{if("updates"==$1 && "true"==$2) print $2 }' $config_file))
