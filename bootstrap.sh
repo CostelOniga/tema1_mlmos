@@ -27,7 +27,7 @@ then
    echo se actualizeaza programele
 fi
 
-programs=($(awk -F ":" {if("install"==$1)print $2}' $config_file))
+programs=($(awk -F ":" '{if("install"==$1)print $2}' $config_file))
 programs=$(echo $programs | tr "," "\n")
 for prog in $programs
 do
