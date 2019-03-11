@@ -54,7 +54,7 @@ programs=$(echo $programs | tr "," "\n")
 for prog in $programs
 do
    echo Se instaleaza : "$prog"
-   sudo yum install $prog
+   sudo yum -y install $prog
    echo $?
 done
 
