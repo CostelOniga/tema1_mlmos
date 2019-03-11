@@ -4,7 +4,7 @@ logfile=/var/log/system-bootstrap.log
 config_file=root/conf
 
 #redirect ouput
-exec 2>&1 >> $logfile
+exec 2>&1 > $logfile
 
 
 hostname=($(awk -F ":" '{if("hostname"==$1)print $2}' $config_file))
@@ -35,4 +35,14 @@ do
    sudo yum install $prog
    echo $?
 done
+
+echo se configureaza o cheie de tip rsa
+
+ssh-keygen -t rsa
+chmod 700 /root/.ssh
+chmod 600 /root/id_rsa
+cat /root/id_rsa.pub >> root/.ssh/authorized_keys
+restorecon -Rv /.ssh
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+
 
