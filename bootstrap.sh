@@ -66,4 +66,8 @@ cat /root/id_rsa.pub >> root/.ssh/authorized_keys
 restorecon -Rv /.ssh
 sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 
+echo Se seteaza selinux=disable
 
+sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+sudo sed -i 's/SELINUX=perimissive/SELINUX=disabled/g' /etc/selinux/config
+setenforce 0
