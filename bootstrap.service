@@ -1,5 +1,6 @@
 [Unit]
 Description= bootstrap service
+AssertPathExists=/root/conf
 
 [Service]
 Type=oneshot
