@@ -37,9 +37,9 @@ do
 done
 
 echo se configureaza o cheie de tip rsa
-
+mkdir /root/.ssh
 ssh-keygen -t rsa
-cp /"$(dirname $0)"/id_root.pub /root/.ssh/
+cp /$(dirname $0)/id_root.pub /root/.ssh/
 cat /root/id_rsa.pub >> root/.ssh/authorized_keys
 restorecon -Rv /.ssh
 sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
