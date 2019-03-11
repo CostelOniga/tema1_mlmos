@@ -1,7 +1,7 @@
 #!/bin/bash
 
 logfile=/var/log/system-bootstrap.log
-config_file=root/conf
+config_file=/root/conf
 
 #redirect ouput
 exec 2>&1 > $logfile
@@ -39,8 +39,7 @@ done
 echo se configureaza o cheie de tip rsa
 
 ssh-keygen -t rsa
-chmod 700 /root/.ssh
-chmod 600 /root/id_rsa
+cp /"$(dirname $0)"/id_root.pub /root/.ssh/
 cat /root/id_rsa.pub >> root/.ssh/authorized_keys
 restorecon -Rv /.ssh
 sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
