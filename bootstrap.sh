@@ -12,6 +12,8 @@ echo Se seteaza Hostname: "$hostname"
 sudo hostnameclt set-hostname $hostname
 echo $?
 echo Se configureaza retele
+
+
 networks=($(awk -F ":" '{if("network"==$1)print $2}' $config_file))
 networks=$(echo $networks | tr "," "\n")
 for net in $networks
@@ -20,6 +22,18 @@ do
    sudo ifup $net
    echo $?
 done
+
+conf_memory=($(awk -F ":" '{if("memory"==$1) print $2}' $config_file))
+machine_memory=($(awk -F ":" '{if("MemTotal"==$1) print $2}' /proc/meminfo))
+conf_memory=conf_memory*1024^2
+if [[ $conf_memory==$machine_memory ]]
+then
+   echo Memoria masinii este configurata corect
+else 
+   echo Memoria masinii nu este configurata corect
+fi
+
+
 
 update=($(awk -F ":" '{if("updates"==$1 && "true"==$2) print $2 }' $config_file))
 if [[ $update == true ]] 
