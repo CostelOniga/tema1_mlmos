@@ -7,7 +7,7 @@ config_file=root/conf
 exec 2>&1 >> $logfile
 
 
-hostname=$(awk -F:'{if("hostname"==$1)print $2}' $config_file)
+hostname=($(awk -F:'{if("hostname"==$1)print $2}' $config_file))
 echo Se seteaza Hostname: "$hostname"
 sudo hostnameclt set-hostname $hostname
 
@@ -20,7 +20,7 @@ do
    sudo ifup $net
 done
 
-update=($(awk -F ":" '{if("update"==$1 && "true"==$2) print $2 }' $config_file))
+update=($(awk -F ":" '{if("updates"==$1 && "true"==$2) print $2 }' $config_file))
 if [[ $update == true ]] 
 then
    echo se actualizeaza programele
