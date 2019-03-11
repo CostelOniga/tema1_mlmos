@@ -19,8 +19,8 @@ for net in $networks; do
    sudo ifup $net
 done
 
-update=($(awk -F ":" '{if("update"==$1 && "true"==$2) print $2 }' $config_file)
-if [[ $update == true ]]; then
+update=($(awk -F ":" '{if("update"==$1 && "true"==$2) print $2 }' $config_file))
+if [[ $update == true ]] then
    echo se actualizeaza programele
 fi
 
